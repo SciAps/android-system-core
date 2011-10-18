@@ -261,6 +261,9 @@ enum {
     NATIVE_WINDOW_API_DISCONNECT            = 14,   /* private */
     NATIVE_WINDOW_SET_BUFFERS_USER_DIMENSIONS = 15, /* private */
     NATIVE_WINDOW_SET_POST_TRANSFORM_CROP   = 16,   /* private */
+#ifdef OMAP_ENHANCEMENT
+    NATIVE_WINDOW_SET_BUFFERS_LAYOUT        = 254,
+#endif
 };
 
 /* parameter for NATIVE_WINDOW_[API_][DIS]CONNECT */
@@ -331,6 +334,26 @@ enum {
  * defined directly to avoid problems with C99/C++ inclusion of stdint.h.
  */
 static const int64_t NATIVE_WINDOW_TIMESTAMP_AUTO = (-9223372036854775807LL-1);
+
+#ifdef OMAP_ENHANCEMENT
+/* parameter for NATIVE_WINDOW_SET_BUFFERS_LAYOUT */
+enum {
+    /* Buffer Layout: Progressive */
+    NATIVE_WINDOW_BUFFERS_LAYOUT_PROGRESSIVE              = 0x00,
+    /* Buffer Layout: Interleaveframe Top field First*/
+    NATIVE_WINDOW_BUFFERS_LAYOUT_INTERLEAVE_TOP_FIRST    = 0x01,
+    /* Buffer Layout: Interleaveframe Bottom field First*/
+    NATIVE_WINDOW_BUFFERS_LAYOUT_INTERLEAVE_BOTTOM_FIRST = 0x02,
+    /* Buffer Layout: Noninterleave Top Field First */
+    NATIVE_WINDOW_BUFFERS_LAYOUT_TOP_FIRST               = 0x04,
+    /* Buffer Layout: Noninterleave Bottom Field First*/
+    NATIVE_WINDOW_BUFFERS_LAYOUT_BOTTOM_FIRST            = 0x08,
+    /* Buffer Layout: Only Top Field */
+    NATIVE_WINDOW_BUFFERS_LAYOUT_TOP_ONLY                = 0x10,
+    /* Buffer Layout: Only Bottom Field*/
+    NATIVE_WINDOW_BUFFERS_LAYOUT_BOTTOM_ONLY             = 0x20,
+};
+#endif
 
 struct ANativeWindow
 {
@@ -472,6 +495,7 @@ struct ANativeWindow
      *     NATIVE_WINDOW_API_DISCONNECT         (private)
      *     NATIVE_WINDOW_SET_BUFFERS_USER_DIMENSIONS (private)
      *     NATIVE_WINDOW_SET_POST_TRANSFORM_CROP (private)
+     *     NATIVE_WINDOW_SET_BUFFERS_LAYOUT
      *
      */
 
@@ -792,6 +816,24 @@ static inline int native_window_set_scaling_mode(
     return window->perform(window, NATIVE_WINDOW_SET_SCALING_MODE,
             mode);
 }
+
+#ifdef OMAP_ENHANCEMENT
+/*
+ * native_window_set_buffers_layour(..., uint32 layout)
+ * Sets how the content is arranged within the buffer.eg: interlaced
+ *
+ * The specified layout is assumed to all buffers queued after it is called.
+ *
+ * if 'layout' is zero, subsequently queued buffers will be treated as progressive.
+ *
+ */
+static inline int native_window_set_buffers_layout(
+        struct ANativeWindow* window,
+        uint32_t layout)
+{
+    return window->perform(window, NATIVE_WINDOW_SET_BUFFERS_LAYOUT, layout);
+}
+#endif
 
 /*
  * native_window_api_connect(..., int api)
