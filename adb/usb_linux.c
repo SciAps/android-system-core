@@ -235,10 +235,25 @@ static void find_usb_device(const char *base,
 
                         DBGX("looking for bulk endpoints\n");
                             // looks like ADB...
+
+#ifdef OMAP_ENHANCEMENT
+                        // default: ep desc size for USB 2.0 ep descriptors
+                        int ep_size = USB_DT_ENDPOINT_SIZE;
+
+                        // ep desc size for USB 3.0 ep descriptors
+                        if (device->bcdUSB >= 0x300)
+                            ep_size += USB_DT_SS_EP_COMP_SIZE;
+
+                        ep1 = (struct usb_endpoint_descriptor *)bufptr;
+                        bufptr += ep_size;
+                        ep2 = (struct usb_endpoint_descriptor *)bufptr;
+                        bufptr += ep_size;
+#else
                         ep1 = (struct usb_endpoint_descriptor *)bufptr;
                         bufptr += USB_DT_ENDPOINT_SIZE;
                         ep2 = (struct usb_endpoint_descriptor *)bufptr;
                         bufptr += USB_DT_ENDPOINT_SIZE;
+#endif
 
                         if (bufptr > devdesc + desclength ||
                             ep1->bLength != USB_DT_ENDPOINT_SIZE ||
