@@ -290,6 +290,18 @@ typedef struct camera_frame_metadata {
      * An array of the detected faces. The length is number_of_faces.
      */
     camera_face_t *faces;
+
+#ifdef OMAP_ENHANCEMENT_CPCAM
+    /**
+     * Exposure time in microseconds
+     */
+    int32_t exposure_time;
+
+    /**
+     * Analog gain (EV * 100)
+     */
+    int32_t analog_gain;
+#endif
 } camera_frame_metadata_t;
 
 __END_DECLS
