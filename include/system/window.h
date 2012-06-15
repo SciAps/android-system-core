@@ -268,6 +268,7 @@ enum {
     NATIVE_WINDOW_UPDATE_AND_GET_CURRENT    = 255,
     NATIVE_WINDOW_SET_BUFFERS_METADATA      = 256,
     NATIVE_WINDOW_ADD_BUFFER_SLOT           = 257,
+    NATIVE_WINDOW_GET_ID                    = 258,
 #endif
 };
 
