@@ -231,6 +231,11 @@ enum {
      * one buffer behind the producer.
      */
     NATIVE_WINDOW_CONSUMER_RUNNING_BEHIND = 9
+
+#ifdef OMAP_ENHANCEMENT_CPCAM
+    , NATIVE_WINDOW_BUFFER_COUNT = 255
+#endif
+
 };
 
 /* Valid operations for the (*perform)() hook.
