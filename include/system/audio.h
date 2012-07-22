@@ -351,6 +351,7 @@ enum {
     AUDIO_DEVICE_IN_USB_ACCESSORY         = AUDIO_DEVICE_BIT_IN | 0x800,
     AUDIO_DEVICE_IN_USB_DEVICE            = AUDIO_DEVICE_BIT_IN | 0x1000,
 #ifdef OMAP_ENHANCEMENT
+    AUDIO_DEVICE_IN_USB_HEADSET           = AUDIO_DEVICE_BIT_IN | 0x1000000,
     AUDIO_DEVICE_IN_FM_RADIO_RX           = AUDIO_DEVICE_BIT_IN | 0x2000000,
 #endif
     AUDIO_DEVICE_IN_DEFAULT               = AUDIO_DEVICE_BIT_IN | AUDIO_DEVICE_BIT_DEFAULT,
@@ -369,6 +370,7 @@ enum {
                                AUDIO_DEVICE_IN_USB_ACCESSORY |
                                AUDIO_DEVICE_IN_USB_DEVICE |
 #ifdef OMAP_ENHANCEMENT
+                               AUDIO_DEVICE_IN_USB_HEADSET |
                                AUDIO_DEVICE_IN_FM_RADIO_RX |
 #endif
                                AUDIO_DEVICE_IN_DEFAULT),
