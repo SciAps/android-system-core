@@ -178,6 +178,22 @@ enum {
      * count is non-positive or too big to be realized.
      */
     CAMERA_CMD_SET_VIDEO_BUFFER_COUNT = 10,
+
+#ifdef OMAP_ENHANCEMENT_VTC
+    /**
+     * Camera Preview deinitialization.
+     * This is a TI enhancement for supporting tunneling during VTC.
+     * This command causes the camera component to move from loaded to idle state.
+     */
+    CAMERA_CMD_PREVIEW_INITIALIZATION = 256,
+
+    /**
+     * Camera Preview initialization.
+     * This is a TI enhancement for supporting tunneling during VTC.
+     * This command causes the camera component to move from executing to idle state.
+     */
+    CAMERA_CMD_PREVIEW_DEINITIALIZATION = 257,
+#endif
 };
 
 /** camera fatal errors */
