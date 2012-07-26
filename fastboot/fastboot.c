@@ -208,7 +208,11 @@ int match_fastboot_with_serial(usb_ifc_info *info, const char *local_serial)
        (info->dev_vendor != 0x0bb4))    // HTC
             return -1;
     if(info->ifc_class != 0xff) return -1;
+
+    if(info->ifc_subclass != 0xff)
     if(info->ifc_subclass != 0x42) return -1;
+
+    if(info->ifc_protocol != 0xff)
     if(info->ifc_protocol != 0x03) return -1;
     // require matching serial number or device path if requested
     // at the command line with the -s option.
