@@ -233,7 +233,9 @@ enum {
     NATIVE_WINDOW_CONSUMER_RUNNING_BEHIND = 9
 
 #ifdef OMAP_ENHANCEMENT_CPCAM
-    , NATIVE_WINDOW_BUFFER_COUNT = 255
+    , NATIVE_WINDOW_BUFFER_COUNT = 255,
+    NATIVE_WINDOW_CURRENT_WIDTH = 256,
+    NATIVE_WINDOW_CURRENT_HEIGHT = 257
 #endif
 
 };
@@ -274,6 +276,7 @@ enum {
     NATIVE_WINDOW_SET_BUFFERS_METADATA      = 256,
     NATIVE_WINDOW_ADD_BUFFER_SLOT           = 257,
     NATIVE_WINDOW_GET_ID                    = 258,
+    NATIVE_WINDOW_GET_CROP                  = 259,
 #endif
 };
 
@@ -661,6 +664,21 @@ static inline int native_window_set_crop(
 {
     return window->perform(window, NATIVE_WINDOW_SET_CROP, crop);
 }
+
+#ifdef OMAP_ENHANCEMENT_CPCAM
+
+/*
+ * native_window_get_crop(..., crop)
+ * get current crop
+ */
+static inline int native_window_get_crop(
+        struct ANativeWindow* window,
+        android_native_rect_t const * crop)
+{
+    return window->perform(window, NATIVE_WINDOW_GET_CROP, crop);
+}
+
+#endif
 
 /*
  * native_window_set_post_transform_crop(..., crop)
