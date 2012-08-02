@@ -194,6 +194,14 @@ enum {
      */
     CAMERA_CMD_PREVIEW_DEINITIALIZATION = 257,
 #endif
+
+#ifdef OMAP_ENHANCEMENT
+    /**
+     * Extend camera_device_ops_t with extra callbacks.
+     * The arg1 and arg2 arguments should form pointer to camera_device_extended_ops_t.
+     */
+    CAMERA_CMD_SETUP_EXTENDED_OPERATIONS = 1024,
+#endif
 };
 
 /** camera fatal errors */
