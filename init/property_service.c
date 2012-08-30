@@ -94,6 +94,13 @@ struct {
     { "persist.security.", AID_SYSTEM,   0 },
     { "persist.service.bdroid.", AID_BLUETOOTH,   0 },
     { "selinux."         , AID_SYSTEM,   0 },
+#ifdef OMAP_ENHANCEMENT //DOLBY_DDPDEC51_MULTICHANNEL
+    { "dolby.audio",      AID_MEDIA,    0 },
+#endif
+#ifdef OMAP_ENHANCEMENT //DOLBY_AUDIOEFFECT_DS
+    // used for setting Dolby specific properties
+    { "dolby.",           AID_SYSTEM,   0 },
+#endif
     { NULL, 0, 0 }
 };
 
