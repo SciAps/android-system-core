@@ -65,6 +65,7 @@
 
 #ifdef OMAP_ENHANCEMENT
 #define AID_FMRADIO       1029  /* FM subsystem */
+#define AID_ETHERNET      1030  /* Ethernet service */
 #endif
 
 #define AID_SHELL         2000  /* adb and debug shell user */
@@ -124,6 +125,7 @@ static const struct android_id_info android_ids[] = {
     { "drmrpc",    AID_DRMRPC, },
 #ifdef OMAP_ENHANCEMENT
     { "fmradio",   AID_FMRADIO, },
+    { "eth",       AID_ETHERNET, },
 #endif
     { "shell",     AID_SHELL, },
     { "cache",     AID_CACHE, },
