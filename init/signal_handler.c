@@ -63,6 +63,10 @@ static int wait_for_one_process(int block)
 
     NOTICE("process '%s', pid %d exited\n", svc->name, pid);
 
+    /* Strictly for logging boot animation exit to the kernel */
+    if (!strcmp("bootanim", svc->name))
+         ERROR("Boot Animation exit\n");
+
     if (!(svc->flags & SVC_ONESHOT)) {
         kill(-pid, SIGKILL);
         NOTICE("process '%s' killing any children in process group\n", svc->name);
