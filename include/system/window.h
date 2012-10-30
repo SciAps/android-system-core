@@ -277,6 +277,7 @@ enum {
     NATIVE_WINDOW_ADD_BUFFER_SLOT           = 257,
     NATIVE_WINDOW_GET_ID                    = 258,
     NATIVE_WINDOW_GET_CROP                  = 259,
+    NATIVE_WINDOW_RELEASE_BUFFER            = 260
 #endif
 };
 
