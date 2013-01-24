@@ -242,6 +242,9 @@ enum {
 
     AUDIO_CHANNEL_IN_MONO   = AUDIO_CHANNEL_IN_FRONT,
     AUDIO_CHANNEL_IN_STEREO = (AUDIO_CHANNEL_IN_LEFT | AUDIO_CHANNEL_IN_RIGHT),
+#ifdef OMAP_ENHANCEMENT
+    AUDIO_CHANNEL_IN_5POINT1EMUL = 0x3f,
+#endif
     AUDIO_CHANNEL_IN_ALL    = (AUDIO_CHANNEL_IN_LEFT |
                                AUDIO_CHANNEL_IN_RIGHT |
                                AUDIO_CHANNEL_IN_FRONT |
@@ -255,6 +258,9 @@ enum {
                                AUDIO_CHANNEL_IN_Y_AXIS |
                                AUDIO_CHANNEL_IN_Z_AXIS |
                                AUDIO_CHANNEL_IN_VOICE_UPLINK |
+#ifdef OMAP_ENHANCEMENT
+                               AUDIO_CHANNEL_IN_5POINT1EMUL |
+#endif
                                AUDIO_CHANNEL_IN_VOICE_DNLINK),
 };
 
@@ -517,6 +523,10 @@ static inline audio_channel_mask_t audio_channel_in_mask_from_count(uint32_t cha
         return AUDIO_CHANNEL_IN_MONO;
     case 2:
         return AUDIO_CHANNEL_IN_STEREO;
+#ifdef OMAP_ENHANCEMENT
+    case 6:
+        return AUDIO_CHANNEL_IN_5POINT1EMUL;
+#endif
     default:
         return 0;
     }
